@@ -1,6 +1,7 @@
 // components/enseignant/TeacherDashboard.tsx
 import React, { useState, useEffect } from 'react';
-import { Card, StatsCard } from '@/components/common';
+import { Card } from '../common/card';
+import StatsCard  from '../common/StatsCard'
 import { TeacherStats, TeacherCourse } from './types/enseignant.types';
 
 const TeacherDashboard: React.FC = () => {
@@ -87,7 +88,7 @@ const TeacherDashboard: React.FC = () => {
       {/* Grille principale */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Cours récents */}
-        <Card title="Mes cours récents" icon="📖" className="lg:col-span-2">
+        <Card title="Mes cours récents"  className="lg:col-span-2">
           <div className="space-y-4">
             {recentCourses.map((course) => (
               <div key={course.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
@@ -120,7 +121,7 @@ const TeacherDashboard: React.FC = () => {
         </Card>
 
         {/* Tâches récentes */}
-        <Card title="Tâches récentes" icon="✅">
+        <Card title="Tâches récentes">
           <div className="space-y-3">
             <div className="p-3 bg-yellow-50 rounded-lg">
               <p className="font-medium">23 devoirs à corriger</p>

@@ -1,6 +1,7 @@
 // components/sous-admin/CourseApproval.tsx
 import React, { useState } from 'react';
-import { Card, Button } from '@/components/common';
+import { Card } from '../common/card';
+import { Button } from '../common/button'
 
 interface PendingCourse {
   id: string;
@@ -55,7 +56,7 @@ const CourseApproval: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Liste des cours en attente */}
         <div className="lg:col-span-1">
-          <Card title="Cours en attente" icon="⏳">
+          <Card title="Cours en attente" >
             <div className="space-y-3">
               {pendingCourses.map((course) => (
                 <button
@@ -113,13 +114,11 @@ const CourseApproval: React.FC = () => {
 
                 <div className="flex space-x-4 pt-4">
                   <Button 
-                    variant="success" 
                     onClick={() => handleApprove(selectedCourse.id)}
                   >
                     ✅ Approuver le cours
                   </Button>
                   <Button 
-                    variant="danger" 
                     onClick={() => handleReject(selectedCourse.id)}
                   >
                     ❌ Rejeter

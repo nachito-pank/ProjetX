@@ -1,6 +1,7 @@
 // components/enseignant/AttendanceManager.tsx
 import React, { useState } from 'react';
-import { Card, Button } from '@/components/common';
+import { Card, } from '../common/card';
+import {Button} from '../common/button'
 
 interface Student {
   id: string;
@@ -156,7 +157,7 @@ const AttendanceManager: React.FC = () => {
         </div>
 
         <div className="mt-6">
-          <Button variant="primary" onClick={saveAttendance} className="w-full">
+          <Button  onClick={saveAttendance} className="w-full">
             💾 Enregistrer les présences
           </Button>
         </div>

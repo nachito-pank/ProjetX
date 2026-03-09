@@ -1,7 +1,7 @@
 // components/enseignant/CourseContent.tsx
 import React, { useState } from 'react';
-import { Card, Button } from '@/components/common';
-
+import { Card } from '../common/card';
+import { Button } from '@base-ui/react'; 
 interface Lesson {
   id: string;
   title: string;
@@ -54,7 +54,7 @@ const CourseContent: React.FC = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Contenu du cours</h1>
-        <Button variant="primary">+ Ajouter un module</Button>
+        <Button >+ Ajouter un module</Button>
       </div>
 
       {/* Aperçu du cours */}
@@ -67,12 +67,12 @@ const CourseContent: React.FC = () => {
             <h2 className="text-2xl font-bold">React pour débutants</h2>
             <p className="text-gray-500">12 leçons • 4h30 de contenu</p>
           </div>
-          <Button variant="outline">Aperçu</Button>
+          <Button >Aperçu</Button>
         </div>
       </Card>
 
       {/* Structure du cours */}
-      <Card title="Structure du cours" icon="📚">
+      <Card title="Structure du cours" >
         <div className="space-y-4">
           {modules.map((module) => (
             <div key={module.id} className="border rounded-lg overflow-hidden">
@@ -136,7 +136,7 @@ const CourseContent: React.FC = () => {
       </Card>
 
       {/* Statistiques du cours */}
-      <Card title="Statistiques du cours" icon="📊">
+      <Card title="Statistiques du cours" >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center">
             <p className="text-2xl font-bold text-blue-600">45</p>

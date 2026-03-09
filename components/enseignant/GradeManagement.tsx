@@ -1,6 +1,7 @@
 // components/enseignant/GradeManagement.tsx
 import React, { useState } from 'react';
-import { Card, Button } from '@/components/common';
+import { Card } from '../common/card';
+import { Button } from '../common/button'
 
 interface StudentGrade {
   id: string;
@@ -72,7 +73,7 @@ const GradeManagement: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Liste des soumissions */}
         <div className="lg:col-span-1">
-          <Card title="À corriger" icon="📝">
+          <Card title="À corriger" >
             <div className="space-y-3">
               {submissions
                 .filter(s => s.status !== 'noté')
@@ -144,7 +145,6 @@ const GradeManagement: React.FC = () => {
 
                 <div className="flex space-x-4">
                   <Button 
-                    variant="success" 
                     onClick={() => handleGradeSubmit(selectedStudent.id)}
                     disabled={!grade}
                   >
@@ -173,7 +173,7 @@ const GradeManagement: React.FC = () => {
       </div>
 
       {/* Devoirs déjà notés */}
-      <Card title="Devoirs notés" icon="✅">
+      <Card title="Devoirs notés" >
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>

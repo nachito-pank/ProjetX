@@ -1,6 +1,6 @@
 // components/index.ts
 // Exports communs
-export * from './common';
+export * from '../../components/common';
 
 // Exports par rôle
 export * as SousAdmin from './sous-admin';

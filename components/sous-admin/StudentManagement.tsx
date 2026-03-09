@@ -1,6 +1,7 @@
 // components/sous-admin/StudentManagement.tsx
 import React, { useState } from 'react';
-import { Card, Button } from '@/components/common';
+import { Card } from '../common/card';
+import { Button } from '@base-ui/react';
 import { Student } from './types/sous-admin.types';
 
 const StudentManagement: React.FC = () => {
@@ -58,7 +59,7 @@ const StudentManagement: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <Button variant="primary">Exporter la liste</Button>
+          <Button >Exporter la liste</Button>
         </div>
       </Card>
 

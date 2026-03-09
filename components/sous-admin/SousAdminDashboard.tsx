@@ -1,6 +1,7 @@
 // components/sous-admin/SousAdminDashboard.tsx
 import React, { useState, useEffect } from 'react';
-import { Card, StatsCard } from '@/components/common';
+import { Card } from '../common/card';
+import StatsCard from '../common/StatsCard'
 import { SousAdminStats } from './types/sous-admin.types';
 
 const SousAdminDashboard: React.FC = () => {
@@ -75,7 +76,7 @@ const SousAdminDashboard: React.FC = () => {
       {/* Grille principale */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Cours récents */}
-        <Card title="Cours récents" icon="🆕" className="lg:col-span-2">
+        <Card title="Cours récents" className="lg:col-span-2">
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
               <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -93,7 +94,7 @@ const SousAdminDashboard: React.FC = () => {
         </Card>
 
         {/* Activités récentes */}
-        <Card title="Activités récentes" icon="🔄">
+        <Card title="Activités récentes" >
           <div className="space-y-4">
             {recentActivities.map((activity) => (
               <div key={activity.id} className="border-b last:border-0 pb-3 last:pb-0">
@@ -107,7 +108,7 @@ const SousAdminDashboard: React.FC = () => {
       </div>
 
       {/* Approuvations en attente */}
-      <Card title="Cours en attente d'approbation" icon="⏳">
+      <Card title="Cours en attente d'approbation" >
         <div className="overflow-x-auto">
           <table className="min-w-full">
             <thead>
