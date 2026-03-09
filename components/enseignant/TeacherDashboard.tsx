@@ -1,4 +1,3 @@
-// components/enseignant/TeacherDashboard.tsx
 import React, { useState, useEffect } from 'react';
 import { Card } from '../common/card';
 import StatsCard  from '../common/StatsCard'

@@ -1,4 +1,3 @@
-// components/enseignant/index.ts
 export { default as TeacherDashboard } from './TeacherDashboard';
 export { default as GradeManagement } from './GradeManagement';
 export { default as AttendanceManager } from './AttendanceManager';

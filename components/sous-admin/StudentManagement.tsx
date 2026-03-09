@@ -1,4 +1,3 @@
-// components/sous-admin/StudentManagement.tsx
 import React, { useState } from 'react';
 import { Card } from '../common/card';
 import { Button } from '@base-ui/react';

@@ -1,4 +1,3 @@
-// components/enseignant/types/enseignant.types.ts
 export interface TeacherCourse {
   id: string;
   title: string;

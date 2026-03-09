@@ -1,4 +1,3 @@
-// components/enseignant/AttendanceManager.tsx
 import React, { useState } from 'react';
 import { Card, } from '../common/card';
 import {Button} from '../common/button'

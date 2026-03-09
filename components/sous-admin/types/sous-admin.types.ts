@@ -1,4 +1,3 @@
-// components/sous-admin/types/sous-admin.types.ts
 export interface Course {
   id: string;
   title: string;
