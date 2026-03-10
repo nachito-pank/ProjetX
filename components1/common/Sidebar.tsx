@@ -30,19 +30,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       <aside
         className={cn(
-          'fixed top-0 left-0 h-full w-72 bg-white border-r border-slate-200 z-50 transform transition-transform duration-300 lg:translate-x-0',
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          'fixed top-16 left-0 h-[calc(100%-4rem)] w-72 bg-white border-r border-slate-200 z-50 transform transition-transform duration-300 lg:translate-x-0',
+    isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        <div className="h-16 flex items-center px-6 border-b border-slate-100">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-              E
-            </div>
-            <h1 className="text-xl font-bold text-slate-800 tracking-tight">EduManage</h1>
-          </div>
-        </div>
-
         <nav className="p-4 space-y-2 overflow-y-auto h-[calc(100%-4rem)]">
           {menuItems.map((item) => {
             const isActive = pathname === item.href;

@@ -6,7 +6,19 @@ import Navbar from '@/components1/common/Navbar';
 import { Card } from '@/components1/common/Card';
 import { Button } from '@/components1/common/Button';
 import FormField from '@/components1/common/FormField';
-import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, BookOpenText, Pencil, Camera, X } from 'lucide-react';
+import {
+  BookOpen,
+  GraduationCap,
+  Calendar,
+  ChevronRight,
+  User,
+  Mail,
+  Phone,
+  BookOpenText,
+  Pencil,
+  Camera,
+  X
+} from 'lucide-react';
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
 import { STORAGE_KEY, STORAGE_IMAGE_KEY } from '@/lib/enseignant-profile';
@@ -103,13 +115,15 @@ export default function DashboardPage() {
   const nextCourse = (enseignantData.profile as { nextCourse?: { subject: string; time: string; room: string } }).nextCourse;
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+    <div className="min-h-screen bg-slate-50">
+      {/* Navbar full-width */}
+      <Navbar user={{ ...user, avatarUrl: profileImage }} onToggleSidebar={handleToggleSidebar} onLogout={handleLogout} />
 
-      <div className="flex-1 flex flex-col min-h-screen lg:ml-72">
-        <Navbar user={{ ...user, avatarUrl: profileImage }} onToggleSidebar={handleToggleSidebar} onLogout={handleLogout} />
+      {/* Conteneur Sidebar + Main sous la navbar */}
+      <div className="flex">
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        <main className="p-6 bg-slate-50 flex-1">
+        <main className="flex-1 p-6">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-2xl font-bold text-slate-800 mb-2">
               Bonjour, {profile.firstName} {profile.name}
@@ -120,7 +134,7 @@ export default function DashboardPage() {
             <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50">
               <div className="bg-gradient-to-r from-slate-50 to-white px-1 py-1">
                 <div className="flex flex-col lg:flex-row">
-                  {/* Photo - Grande cercle type carte d'identité */}
+                  {/* Photo */}
                   <div className="flex items-center justify-center p-8 lg:p-10 lg:border-r lg:border-slate-200/80 lg:pr-12">
                     <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl ring-2 ring-slate-100 bg-slate-100">
                       {profileImage ? (
@@ -242,6 +256,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
+            {/* Accès rapide */}
             <h2 className="text-lg font-semibold text-slate-800 mb-4">Accès rapide</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               <Link href="/enseignant/cours">
@@ -296,6 +311,7 @@ export default function DashboardPage() {
               </Link>
             </div>
 
+            {/* Prochain cours */}
             {nextCourse && (
               <Card className="p-6">
                 <h2 className="text-lg font-semibold text-slate-800 mb-4">Prochain cours</h2>

@@ -19,7 +19,6 @@ export const LoginForm = () => {
     const formData = new FormData(e.target as HTMLFormElement);
     const email = formData.get('email') as string;
     
-    // Simulate login logic
     setTimeout(() => {
       setLoading(false);
       if (email.includes('admin')) {
@@ -37,27 +36,44 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50">
-      <Card className="w-full max-w-md p-8">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-100 via-white to-blue-200">
+
+      <Card className="w-full max-w-md p-8 bg-white shadow-2xl rounded-2xl border border-blue-100">
+
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-black font-bold text-3xl mx-auto mb-4 shadow-lg shadow-primary/20">
-            
+
+          {/* Logo */}
+          <div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 bg-white shadow-lg border border-blue-100 overflow-hidden">
+            <img
+              src="/ECES.png"
+              alt="Logo ECES"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800 tracking-tight">ECES</h1>
-          <p className="text-slate-500 font-medium mt-1">Connectez-vous à votre compte</p>
+
+          <h1 className="text-3xl font-bold text-blue-700 tracking-tight">
+            ECES
+          </h1>
+
+          <p className="text-gray-500 mt-2">
+            Plateforme académique
+          </p>
+
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+
           <FormField
             label="Email ou identifiant"
             name="email"
-            placeholder="admin@edumanage.com"
+            placeholder="admin@eces.com"
             required
             icon={<User className="w-4 h-4" />}
-            className='text-black'
+            className="text-black"
           />
           
           <div className="relative">
+
             <FormField
               label="Mot de passe"
               name="password"
@@ -65,35 +81,64 @@ export const LoginForm = () => {
               placeholder="••••••••"
               required
               icon={<Lock className="w-4 h-4" />}
-              className='text-black'
+              className="text-black"
             />
+
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[38px] text-slate-400 hover:text-slate-600 transition-colors"
+              className="absolute right-3 top-[38px] text-gray-400 hover:text-blue-600 transition-colors"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
+
           </div>
 
           <div className="flex items-center justify-between">
+
             <label className="flex items-center gap-2 cursor-pointer group">
-              <input type="checkbox" className="w-4 h-4 rounded border-slate-300 text-primary focus:ring-secondary" />
-              <span className="text-sm font-medium text-slate-500 group-hover:text-slate-700 transition-colors">Se souvenir de moi</span>
+              <input
+                type="checkbox"
+                className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-400"
+              />
+              <span className="text-sm text-gray-500 group-hover:text-gray-700">
+                Se souvenir de moi
+              </span>
             </label>
-            <a href="#" className="text-sm font-bold text-primary hover:underline">Mot de passe oublié ?</a>
+
+            <a
+              href="#"
+              className="text-sm font-semibold text-blue-600 hover:underline"
+            >
+              Mot de passe oublié ?
+            </a>
+
           </div>
 
-          <Button type="submit" className="w-full h-12 text-base" loading={loading}>
+          <Button
+            type="submit"
+            className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700 text-white"
+            loading={loading}
+          >
             Se connecter
           </Button>
+
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-          <p className="text-sm text-slate-500 font-medium">
-            Besoin d&apos;aide ? <a href="#" className="text-primary font-bold hover:underline">Contactez le support</a>
+        <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+
+          <p className="text-sm text-gray-500">
+            Besoin d'aide ?{' '}
+            <a
+              href="#"
+              className="text-blue-600 font-semibold hover:underline"
+            >
+              Contactez le support
+            </a>
           </p>
+
         </div>
+
       </Card>
     </div>
   );
