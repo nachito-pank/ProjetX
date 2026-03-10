@@ -1,0 +1,29 @@
+{
+  "profile": {
+    "name": "Dupont",
+    "firstName": "Jean",
+    "email": "jean.dupont@edu.com",
+    "subjects": ["Mathématiques", "Algorithmique"],
+    "coursesCount": 5,
+    "studentsCount": 120,
+    "nextCourse": { "subject": "Mathématiques", "time": "14:00", "room": "Amphi A" }
+  },
+  "courses": [
+    { "id": 1, "title": "Algèbre Linéaire", "filiere": "Informatique", "level": "L1", "volume": "30 pages" , "url":"" },
+    { "id": 2, "title": "Analyse Réelle", "filiere": "AMG", "level": "L1", "volume": "45 pages", "url":"" },
+    { "id": 3, "title": "Algorithmique Avancée", "filiere": "MCT", "level": "L2", "volume": "60 pages", "url":""}
+  ],
+  "students": [
+    { "id": "ET001", "name": "Kams", "firstName": "Nathan", "email": "nathan.kams@edu.com", "filiere": "Informatique", "level": "L1" },
+    { "id": "ET002", "name": "Bernard", "firstName": "Luc", "email": "luc.bernard@edu.com", "filiere": "AMG", "level": "L1" },
+    { "id": "ET003", "name": "Martin", "firstName": "Sophie", "email": "sophie.martin@edu.com", "filiere": "Informatique", "level": "L1" },
+    { "id": "ET004", "name": "ANGHA", "firstName": "DIVIN", "email": "ANGHA.martin@edu.com", "filiere": "Informatique", "level": "L1" }
+
+  ],
+  "grades": [
+    { "studentId": "ET001", "studentName": "Nathan Kams", "grade": 5, "gradeSession":10 },
+    { "studentId": "ET002", "studentName": "Luc Bernard", "grade": 12, "gradeSession":18},
+    { "studentId": "ET004", "studentName": "ANGHA Divin", "grade": 19, "gradeSession":16}
+
+  ]
+}
