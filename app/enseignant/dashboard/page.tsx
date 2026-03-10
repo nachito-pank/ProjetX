@@ -156,48 +156,38 @@ export default function DashboardPage() {
                         </Button>
                       </>
                     ) : (
-                      <>
-                        <h3 className="text-lg font-semibold text-slate-800 mb-4">Modifier mon profil</h3>
-                        <div className="space-y-5">
-                          {/* Champ photo */}
-                          <div className="flex flex-col sm:flex-row items-start gap-4">
-                            <div className="flex items-center gap-4">
-                              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center shrink-0">
-                                {profileImage ? (
-                                  <div className="relative w-full h-full">
-                                    <img src={profileImage} alt="Aperçu" className="w-full h-full object-cover" />
-                                    <button
-                                      type="button"
-                                      onClick={(e) => { e.preventDefault(); removeProfileImage(); }}
-                                      className="absolute top-0 right-0 p-1 bg-rose-500 hover:bg-rose-600 text-white rounded-bl-lg transition-colors"
-                                      title="Supprimer la photo"
-                                    >
-                                      <X className="w-3.5 h-3.5" />
-                                    </button>
-                                  </div>
-                                ) : (
-                                  <User className="w-10 h-10 text-slate-400" />
-                                )}
-                              </div>
-                              <div>
-                                <label className="cursor-pointer">
-                                  <input
-                                    type="file"
-                                    accept="image/*"
-                                    onChange={handleImageChange}
-                                    className="hidden"
-                                  />
-                                  <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100">
-                                    <Camera className="w-4 h-4" />
-                                    Changer la photo
-                                  </span>
-                                </label>
-                                <p className="text-xs text-slate-500 mt-2">JPG, PNG. Max 2 Mo</p>
-                              </div>
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+                            <Pencil className="w-4 h-4 text-blue-600" />
+                          </div>
+                          <h3 className="font-semibold text-slate-800">Modifier mon profil</h3>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row items-start gap-6">
+                          <div className="flex flex-col items-center gap-2">
+                            <div className="w-24 h-24 rounded-xl overflow-hidden border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center">
+                              {profileImage ? (
+                                <div className="relative w-full h-full">
+                                  <img src={profileImage} alt="Aperçu" className="w-full h-full object-cover" />
+                                  <button type="button" onClick={(e) => { e.preventDefault(); removeProfileImage(); }} className="absolute top-0 right-0 p-1 bg-rose-500 hover:bg-rose-600 text-white rounded-bl-lg" title="Supprimer">
+                                    <X className="w-3.5 h-3.5" />
+                                  </button>
+                                </div>
+                              ) : (
+                                <User className="w-10 h-10 text-slate-400" />
+                              )}
                             </div>
+                            <label className="cursor-pointer">
+                              <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+                              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700">
+                                <Camera className="w-4 h-4" />
+                                Photo
+                              </span>
+                            </label>
                           </div>
 
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="flex-1 grid gap-4 sm:grid-cols-2 w-full">
                             <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
                             <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
                             <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
@@ -206,17 +196,13 @@ export default function DashboardPage() {
                               <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
                             </div>
                           </div>
-
-                          <div className="flex gap-2 pt-2">
-                            <Button onClick={handleSaveProfile} className="bg-blue-600 text-white hover:bg-blue-700">
-                              Sauvegarder
-                            </Button>
-                            <Button onClick={handleCancelEdit} variant="outline">
-                              Annuler
-                            </Button>
-                          </div>
                         </div>
-                      </>
+
+                        <div className="flex gap-2">
+                          <Button onClick={handleSaveProfile} className="bg-blue-600 text-white hover:bg-blue-700">Enregistrer</Button>
+                          <Button onClick={handleCancelEdit} variant="outline">Annuler</Button>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>
