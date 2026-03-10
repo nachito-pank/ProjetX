@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Lock, User } from 'lucide-react';
 import { Button } from './Button';
-import { FormField } from './FormField';
+import FormField from '@/components1/common/FormField';
 import { Card } from './Card';
 import { useToast } from './Toast';
 
@@ -40,10 +40,10 @@ export const LoginForm = () => {
     <div className="min-h-screen flex items-center justify-center p-4 bg-slate-50">
       <Card className="w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white font-bold text-3xl mx-auto mb-4 shadow-lg shadow-primary/20">
-            E
+          <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-black font-bold text-3xl mx-auto mb-4 shadow-lg shadow-primary/20">
+            
           </div>
-          <h1 className="text-2xl font-bold text-slate-800 tracking-tight">EduManage</h1>
+          <h1 className="text-2xl font-bold text-slate-800 tracking-tight">ECES</h1>
           <p className="text-slate-500 font-medium mt-1">Connectez-vous à votre compte</p>
         </div>
 
@@ -54,6 +54,7 @@ export const LoginForm = () => {
             placeholder="admin@edumanage.com"
             required
             icon={<User className="w-4 h-4" />}
+            className='text-black'
           />
           
           <div className="relative">
@@ -64,6 +65,7 @@ export const LoginForm = () => {
               placeholder="••••••••"
               required
               icon={<Lock className="w-4 h-4" />}
+              className='text-black'
             />
             <button
               type="button"
@@ -76,7 +78,7 @@ export const LoginForm = () => {
 
           <div className="flex items-center justify-between">
             <label className="flex items-center gap-2 cursor-pointer group">
-              <input type="checkbox" className="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" />
+              <input type="checkbox" className="w-4 h-4 rounded border-slate-300 text-primary focus:ring-secondary" />
               <span className="text-sm font-medium text-slate-500 group-hover:text-slate-700 transition-colors">Se souvenir de moi</span>
             </label>
             <a href="#" className="text-sm font-bold text-primary hover:underline">Mot de passe oublié ?</a>
