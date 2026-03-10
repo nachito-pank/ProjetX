@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components1/common/Sidebar';
 import Navbar from '@/components1/common/Navbar';
 import { Card } from '@/components1/common/Card';
@@ -10,19 +10,41 @@ import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, Boo
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
 
+const STORAGE_KEY = 'enseignant-profile';
+const STORAGE_IMAGE_KEY = 'enseignant-profile-image';
+
+const getDefaultProfile = () => ({
+  firstName: enseignantData.profile.firstName,
+  name: enseignantData.profile.name,
+  email: enseignantData.profile.email,
+  phone: (enseignantData.profile as { phone?: string }).phone || '',
+  matiere: Array.isArray(enseignantData.profile.subjects)
+    ? enseignantData.profile.subjects.join(', ')
+    : '',
+});
+
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
-  const [profile, setProfile] = useState({
-    firstName: enseignantData.profile.firstName,
-    name: enseignantData.profile.name,
-    email: enseignantData.profile.email,
-    phone: (enseignantData.profile as { phone?: string }).phone || '',
-    matiere: Array.isArray(enseignantData.profile.subjects)
-      ? enseignantData.profile.subjects.join(', ')
-      : '',
-  });
+  const [profile, setProfile] = useState(getDefaultProfile);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setProfile({ ...getDefaultProfile(), ...parsed });
+      }
+      const savedImage = localStorage.getItem(STORAGE_IMAGE_KEY);
+      if (savedImage) setProfileImage(savedImage);
+    } catch {
+      // ignore parse errors
+    }
+    setLoaded(true);
+  }, []);
 
   const handleToggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const handleLogout = () => {
@@ -45,25 +67,38 @@ export default function DashboardPage() {
 
   const removeProfileImage = () => {
     setProfileImage(null);
+    try {
+      localStorage.removeItem(STORAGE_IMAGE_KEY);
+    } catch {
+      // ignore
+    }
   };
 
   const handleSaveProfile = () => {
-    console.log('Profil sauvegardé:', profile);
-    alert('Profil mis à jour !');
-    setIsEditingProfile(false);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+      if (profileImage) {
+        localStorage.setItem(STORAGE_IMAGE_KEY, profileImage);
+      } else {
+        localStorage.removeItem(STORAGE_IMAGE_KEY);
+      }
+      alert('Profil mis à jour !');
+      setIsEditingProfile(false);
+    } catch {
+      alert('Erreur lors de la sauvegarde.');
+    }
   };
 
   const handleCancelEdit = () => {
-    setProfile({
-      firstName: enseignantData.profile.firstName,
-      name: enseignantData.profile.name,
-      email: enseignantData.profile.email,
-      phone: (enseignantData.profile as { phone?: string }).phone || '',
-      matiere: Array.isArray(enseignantData.profile.subjects)
-        ? enseignantData.profile.subjects.join(', ')
-        : '',
-    });
-    setProfileImage(null);
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const savedImage = localStorage.getItem(STORAGE_IMAGE_KEY);
+      setProfile(saved ? { ...getDefaultProfile(), ...JSON.parse(saved) } : getDefaultProfile());
+      setProfileImage(savedImage);
+    } catch {
+      setProfile(getDefaultProfile());
+      setProfileImage(null);
+    }
     setIsEditingProfile(false);
   };
 
