@@ -30,7 +30,7 @@ export const Layout = ({ children, role, user }: LayoutProps) => {
       <div className="min-h-screen flex bg-slate-50">
         <Sidebar role={role} isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
         
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 lg:ml-72">
           <Navbar 
             user={user} 
             onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 

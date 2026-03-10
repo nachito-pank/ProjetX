@@ -24,6 +24,12 @@
     { "studentId": "ET001", "studentName": "Nathan Kams", "grade": 5, "gradeSession":10 },
     { "studentId": "ET002", "studentName": "Luc Bernard", "grade": 12, "gradeSession":18},
     { "studentId": "ET004", "studentName": "ANGHA Divin", "grade": 19, "gradeSession":16}
-
+  ],
+  "timetable": [
+    { "day": "Lundi", "startTime": "8:00", "endTime": "10:00", "teacher": "Jean Dupont", "subject": "Mathématiques", "room": "Amphi A", "filiere": "Informatique", "level": "L1", "type": "Cours" },
+    { "day": "Lundi", "startTime": "14:00", "endTime": "16:00", "teacher": "Jean Dupont", "subject": "Mathématiques", "room": "Amphi A", "filiere": "AMG", "level": "L1", "type": "Cours" },
+    { "day": "Mardi", "startTime": "10:00", "endTime": "12:00", "teacher": "Jean Dupont", "subject": "Algorithmique", "room": "Salle 12", "filiere": "Informatique", "level": "L1", "type": "TD" },
+    { "day": "Mercredi", "startTime": "8:00", "endTime": "10:00", "teacher": "Jean Dupont", "subject": "Algorithmique", "room": "Salle 8", "filiere": "MCT", "level": "L2", "type": "Cours" },
+    { "day": "Jeudi", "startTime": "14:00", "endTime": "16:00", "teacher": "Jean Dupont", "subject": "Mathématiques", "room": "Amphi B", "filiere": "Informatique", "level": "L2", "type": "TP" }
   ]
 }

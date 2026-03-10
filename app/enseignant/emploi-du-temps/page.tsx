@@ -2,29 +2,31 @@
 
 import React from 'react';
 import { Layout } from '@/components1/common/Layout';
-import { Card } from '@/components1/common/Card';
 import { Button } from '@/components1/common/Button';
 import { Badge } from '@/components1/common/Badge';
-import { Calendar, ChevronLeft, ChevronRight, MapPin, Clock, GraduationCap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import sousAdminData from '@/data/sous-admin.json';
+import enseignantData from '@/data/enseignant.json';
 
 const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 const HOURS = Array.from({ length: 13 }, (_, i) => `${i + 8}:00`);
 
+const timetable = enseignantData.timetable || [];
+
 export default function TeacherTimetable() {
-  const teacherName = 'Jean Dupont';
+  const teacherName = `${enseignantData.profile.firstName} ${enseignantData.profile.name}`;
 
   const getEntryAt = (day: string, hour: string) => {
-    return sousAdminData.timetable.find(
-      (e) => e.day === day && e.startTime === hour && e.teacher === teacherName
+    return timetable.find(
+      (e: { day: string; startTime: string; teacher: string }) =>
+        e.day === day && e.startTime === hour && e.teacher === teacherName
     );
   };
 
   return (
     <Layout
       role="enseignant"
-      user={{ name: 'Jean Dupont', role: 'Enseignant', notifications: 2 }}
+      user={{ name: `${enseignantData.profile.firstName} ${enseignantData.profile.name}`, role: 'Enseignant', notifications: 2 }}
     >
       <div className="space-y-8">
         <div className="flex items-center justify-between">
@@ -64,10 +66,10 @@ export default function TeacherTimetable() {
                           {entry && (
                             <div className={cn(
                               "h-full rounded-xl p-3 border shadow-sm transition-all hover:scale-[1.02] cursor-pointer",
-                              "bg-enseignant/5 border-enseignant/20 text-enseignant"
+                              "bg-blue-50 border-blue-200 text-blue-700"
                             )}>
                               <div className="flex items-center justify-between mb-1">
-                                <Badge variant="secondary" className="text-[8px] px-1.5 py-0 bg-enseignant/10 text-enseignant border-enseignant/20">
+                                <Badge variant="secondary" className="text-[8px] px-1.5 py-0 bg-blue-100 text-blue-700 border-blue-200">
                                   {entry.type}
                                 </Badge>
                                 <span className="text-[10px] font-bold opacity-60">{entry.startTime} - {entry.endTime}</span>
