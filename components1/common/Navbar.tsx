@@ -10,6 +10,7 @@ interface NavbarProps {
     name?: string;
     role?: string;
     notifications?: number;
+    avatarUrl?: string | null;
   };
   onToggleSidebar: () => void;
   onLogout: () => void;
@@ -49,8 +50,12 @@ export default function Navbar({ user, onToggleSidebar, onLogout }: NavbarProps)
             <p className="text-sm font-bold text-slate-800 leading-none">{userData.name}</p>
             <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mt-1">{userData.role}</p>
           </div>
-          <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-slate-200 overflow-hidden">
-            <User className="w-6 h-6 text-slate-400" />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-slate-200 overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 shrink-0">
+            {user?.avatarUrl ? (
+              <img src={user.avatarUrl} alt={userData.name} className="w-full h-full object-cover" />
+            ) : (
+              <User className="w-5 h-5 text-white" />
+            )}
           </div>
           <Button
             variant="ghost"
