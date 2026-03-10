@@ -75,27 +75,82 @@ export default function DashboardPage() {
             </h1>
             <p className="text-slate-600 mb-6">Voici un aperçu de votre activité.</p>
 
-            {/* Section Profil éditable */}
-            <Card className="p-6 mb-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <User className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <h2 className="text-lg font-semibold text-slate-800">Mon Profil</h2>
-                  <p className="text-sm text-slate-500">Modifiez vos informations personnelles</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-                <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
-                <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
-                <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
-                <FormField label="Téléphone" name="phone" value={profile.phone} onChange={handleProfileChange} />
-                <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
-              </div>
-              <Button onClick={handleSaveProfile} className="mt-4 bg-blue-600 text-white hover:bg-blue-700">
-                Sauvegarder le profil
-              </Button>
+            {/* Section Profil */}
+            <Card className="p-8 mb-8">
+              {!isEditingProfile ? (
+                <>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25 shrink-0">
+                      <User className="w-12 h-12 text-white" />
+                    </div>
+                    <div className="flex-1 text-center sm:text-left">
+                      <h2 className="text-2xl font-bold text-slate-800 mb-1">
+                        {profile.firstName} {profile.name}
+                      </h2>
+                      <p className="text-slate-500 mb-6">Enseignant</p>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 text-slate-700">
+                          <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                            <Mail className="w-4 h-4 text-slate-500" />
+                          </div>
+                          <span>{profile.email}</span>
+                        </div>
+                        {profile.phone && (
+                          <div className="flex items-center gap-3 text-slate-700">
+                            <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                              <Phone className="w-4 h-4 text-slate-500" />
+                            </div>
+                            <span>{profile.phone}</span>
+                          </div>
+                        )}
+                        {profile.matiere && (
+                          <div className="flex items-center gap-3 text-slate-700">
+                            <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                              <BookOpenText className="w-4 h-4 text-slate-500" />
+                            </div>
+                            <span>{profile.matiere}</span>
+                          </div>
+                        )}
+                      </div>
+                      <Button
+                        onClick={() => setIsEditingProfile(true)}
+                        variant="outline"
+                        className="mt-6 flex items-center gap-2"
+                      >
+                        <Pencil className="w-4 h-4" />
+                        Modifier le profil
+                      </Button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Pencil className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h2 className="text-lg font-semibold text-slate-800">Modifier mon profil</h2>
+                      <p className="text-sm text-slate-500">Mettez à jour vos informations</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+                    <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
+                    <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
+                    <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
+                    <FormField label="Téléphone" name="phone" value={profile.phone} onChange={handleProfileChange} />
+                    <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
+                  </div>
+                  <div className="flex gap-2 mt-6">
+                    <Button onClick={handleSaveProfile} className="bg-blue-600 text-white hover:bg-blue-700">
+                      Sauvegarder
+                    </Button>
+                    <Button onClick={handleCancelEdit} variant="outline">
+                      Annuler
+                    </Button>
+                  </div>
+                </>
+              )}
             </Card>
 
             <h2 className="text-lg font-semibold text-slate-800 mb-4">Accès rapide</h2>
