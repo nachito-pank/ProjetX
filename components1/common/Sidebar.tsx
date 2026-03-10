@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, BookOpen, GraduationCap, FileText, Calendar, ChevronRight, UserIcon } from 'lucide-react';
+import { LayoutDashboard, BookOpen, GraduationCap, FileText, Calendar, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SidebarProps {
@@ -13,8 +13,6 @@ interface SidebarProps {
 }
 
 const menuItems = [
-  // ... dans menuItems de l'enseignant
-  {  label: 'Profil', href: '/enseignant/profil', icon: UserIcon },
   { label: 'Dashboard', href: '/enseignant/dashboard', icon: LayoutDashboard },
   { label: 'Mes Cours', href: '/enseignant/cours', icon: BookOpen },
   { label: 'Mes Étudiants', href: '/enseignant/etudiants', icon: GraduationCap },

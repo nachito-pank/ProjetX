@@ -137,14 +137,14 @@ export default function DashboardPage() {
               </Link>
             </div>
 
-            {profile.nextCourse && (
+            {nextCourse && (
               <Card className="p-6">
                 <h2 className="text-lg font-semibold text-slate-800 mb-4">Prochain cours</h2>
                 <div className="flex items-center justify-between bg-blue-50 rounded-lg p-4">
                   <div>
-                    <p className="font-medium text-slate-800">{profile.nextCourse.subject}</p>
+                    <p className="font-medium text-slate-800">{nextCourse.subject}</p>
                     <p className="text-sm text-slate-600 mt-1">
-                      {profile.nextCourse.time} — {profile.nextCourse.room}
+                      {nextCourse.time} — {nextCourse.room}
                     </p>
                   </div>
                   <Link
