@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layout } from '@/components/common/Layout';
-import { DataTable } from '@/components/common/DataTable';
-import { Button } from '@/components/common/Button';
-import { Modal } from '@/components/common/Modal';
-import { FormField } from '@/components/common/FormField';
-import { Badge } from '@/components/common/Badge';
-import { Card } from '@/components/common/Card';
+import { Layout } from '@/components1/common/Layout';
+import { DataTable } from '@/components1/common/DataTable';
+import { Button } from '@/components1/common/Button';
+import { Modal } from '@/components1/common/Modal';
+import { FormField } from '@/components1/common/FormField';
+import { Badge } from '@/components1/common/Badge';
+import { Card } from '@/components1/common/Card';
 import { Plus, Edit, File, Trash2, BookOpenText, Eye, Download, Search } from 'lucide-react';
-import { useToast } from '@/components/common/Toast';
+import { useToast } from '@/components1/common/Toast';
 import enseignantData from '@/data/enseignant.json';
 
 interface Course {

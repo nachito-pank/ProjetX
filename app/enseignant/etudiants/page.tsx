@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layout } from '@/components/common/Layout';
-import { DataTable } from '@/components/common/DataTable';
-import { Card } from '@/components/common/Card';
-import { FormField } from '@/components/common/FormField';
-import { Badge } from '@/components/common/Badge';
+import { Layout } from '@/components1/common/Layout';
+import { DataTable } from '@/components1/common/DataTable';
+import { Card } from '@/components1/common/Card';
+import { FormField } from '@/components1/common/FormField';
+import { Badge } from '@/components1/common/Badge';
 import { GraduationCap, Search, ArrowUpDown } from 'lucide-react';
 import enseignantData from '@/data/enseignant.json';
 

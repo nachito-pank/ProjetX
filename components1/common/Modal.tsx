@@ -4,8 +4,8 @@ import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/common/Button';
-import { FormField } from '@/components/common/FormField';
+import { Button } from '@/components1/common/Button';
+import { FormField } from '@/components1/common/FormField';
 import { File } from 'lucide-react';
 
 interface ModalProps {

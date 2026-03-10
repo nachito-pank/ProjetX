@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Layout } from '@/components/common/Layout';
-import { Card } from '@/components/common/Card';
-import { Button } from '@/components/common/Button';
-import { FormField } from '@/components/common/FormField';
-import { Badge } from '@/components/common/Badge';
+import { Layout } from '@/components1/common/Layout';
+import { Card } from '@/components1/common/Card';
+import { Button } from '@/components1/common/Button';
+import { FormField } from '@/components1/common/FormField';
+import { Badge } from '@/components1/common/Badge';
 import { FileText, Save, Calculator, User, AlertCircle, Search } from 'lucide-react';
-import { useToast } from '@/components/common/Toast';
+import { useToast } from '@/components1/common/Toast';
 import { cn } from '@/lib/utils';
 import enseignantData from '@/data/enseignant.json';
 

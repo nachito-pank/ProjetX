@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Layout } from '@/components/common/Layout';
-import { Card } from '@/components/common/Card';
-import { Button } from '@/components/common/Button';
-import { Badge } from '@/components/common/Badge';
+import { Layout } from '@/components1/common/Layout';
+import { Card } from '@/components1/common/Card';
+import { Button } from '@/components1/common/Button';
+import { Badge } from '@/components1/common/Badge';
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Clock, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import sousAdminData from '@/data/sous-admin.json';
