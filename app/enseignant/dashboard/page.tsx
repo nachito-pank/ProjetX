@@ -112,45 +112,44 @@ export default function DashboardPage() {
                   <div className="flex-1 min-w-0 pt-2 sm:pt-0">
                     {!isEditingProfile ? (
                       <>
-                        <div className="space-y-4">
-                          <div>
-                            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
-                              {profile.firstName} {profile.name}
-                            </h2>
-                            <span className="inline-block mt-1 px-3 py-0.5 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full">
-                              Enseignant
-                            </span>
-                          </div>
-                          <div className="space-y-2.5 pt-2">
-                            <div className="flex items-center gap-3 text-slate-600">
-                              <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                                <Mail className="w-4 h-4 text-slate-500" />
-                              </div>
-                              <span className="text-sm font-medium">{profile.email}</span>
-                            </div>
-                            {profile.phone && (
-                              <div className="flex items-center gap-3 text-slate-600">
-                                <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                                  <Phone className="w-4 h-4 text-slate-500" />
-                                </div>
-                                <span className="text-sm font-medium">{profile.phone}</span>
-                              </div>
-                            )}
-                            {profile.matiere && (
-                              <div className="flex items-center gap-3 text-slate-600">
-                                <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                                  <BookOpenText className="w-4 h-4 text-slate-500" />
-                                </div>
-                                <span className="text-sm font-medium">{profile.matiere}</span>
-                              </div>
-                            )}
-                          </div>
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                          <h2 className="text-xl font-bold text-slate-800">{profile.firstName} {profile.name}</h2>
+                          <span className="px-2.5 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-md">Enseignant</span>
                         </div>
-                        <Button
-                          onClick={() => setIsEditingProfile(true)}
-                          variant="outline"
-                          className="mt-6 w-fit flex items-center gap-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50"
-                        >
+                        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-6">
+                          <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                              <Mail className="w-5 h-5 text-blue-600" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Email</p>
+                              <p className="text-sm font-medium text-slate-700 truncate">{profile.email}</p>
+                            </div>
+                          </div>
+                          {profile.phone && (
+                            <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100">
+                              <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                                <Phone className="w-5 h-5 text-blue-600" />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Téléphone</p>
+                                <p className="text-sm font-medium text-slate-700">{profile.phone}</p>
+                              </div>
+                            </div>
+                          )}
+                          {profile.matiere && (
+                            <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50/80 border border-slate-100 sm:col-span-2 lg:col-span-1">
+                              <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                                <BookOpenText className="w-5 h-5 text-blue-600" />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Matières</p>
+                                <p className="text-sm font-medium text-slate-700 truncate">{profile.matiere}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        <Button onClick={() => setIsEditingProfile(true)} variant="outline" size="sm" className="flex items-center gap-2">
                           <Pencil className="w-4 h-4" />
                           Modifier le profil
                         </Button>
