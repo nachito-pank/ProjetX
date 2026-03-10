@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Sidebar from '@/components1/common/Sidebar';
 import Navbar from '@/components1/common/Navbar';
 import { Button } from '@/components1/common/Button';
-import { FormField } from '@/components1/common/FormField';
+import FormField from '@/components1/common/FormField';
 
 export default function ProfilPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function ProfilPage() {
   return (
     <div className="flex">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col min-h-screen lg:ml-72">
         <Navbar
           user={{ name: user.name, role: 'Enseignant', notifications: 3 }}
           onToggleSidebar={handleToggleSidebar}

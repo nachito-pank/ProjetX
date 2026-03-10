@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Layout } from '@/components1/common/Layout';
 import { DataTable } from '@/components1/common/DataTable';
 import { Card } from '@/components1/common/Card';
-import { FormField } from '@/components1/common/FormField';
+import FormField from '@/components1/common/FormField';
 import { Badge } from '@/components1/common/Badge';
 import { GraduationCap, Search, ArrowUpDown } from 'lucide-react';
 import enseignantData from '@/data/enseignant.json';
@@ -67,7 +67,7 @@ export default function StudentList() {
             <h2 className="text-3xl font-black text-slate-800 tracking-tight">Mes Étudiants</h2>
             <p className="text-slate-500 font-medium">Consultez la liste des étudiants par filière et niveau</p>
           </div>
-          <div className="w-12 h-12 bg-enseignant/10 rounded-2xl flex items-center justify-center text-enseignant">
+          <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600">
             <GraduationCap className="w-8 h-8" />
           </div>
         </div>

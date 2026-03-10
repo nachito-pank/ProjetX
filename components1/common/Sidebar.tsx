@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  role?: string;
 }
 
 const menuItems = [

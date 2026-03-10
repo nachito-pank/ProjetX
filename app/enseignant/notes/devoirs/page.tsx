@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Layout } from '@/components1/common/Layout';
 import { Card } from '@/components1/common/Card';
 import { Button } from '@/components1/common/Button';
-import { FormField } from '@/components1/common/FormField';
+import FormField from '@/components1/common/FormField';
 import { Badge } from '@/components1/common/Badge';
 import { FileText, Save, Filter, Search, Calculator, User } from 'lucide-react';
 import { useToast } from '@/components1/common/Toast';

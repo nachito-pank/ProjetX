@@ -5,7 +5,7 @@ import { Layout } from '@/components1/common/Layout';
 import { DataTable } from '@/components1/common/DataTable';
 import { Button } from '@/components1/common/Button';
 import { Modal } from '@/components1/common/Modal';
-import { FormField } from '@/components1/common/FormField';
+import FormField from '@/components1/common/FormField';
 import { Badge } from '@/components1/common/Badge';
 import { Card } from '@/components1/common/Card';
 import { Plus, Edit, File, Trash2, BookOpenText, Eye, Download, Search } from 'lucide-react';
