@@ -51,7 +51,8 @@ export default function GradeSessions() {
     return enseignantData.students.filter(student => 
       student.filiere === selectedFiliere && 
       student.level === selectedLevel &&
-      student.name.toLowerCase().includes(searchTerm.toLowerCase())
+      (student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+       student.firstName.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   }, [selectedFiliere, selectedLevel, searchTerm]);
 
@@ -95,12 +96,14 @@ export default function GradeSessions() {
     }, 1000);
   };
 
-  const average = filteredStudents.reduce((acc, student) => acc + getStudentGradeSession(student.id), 0) / filteredStudents.length;
+  const average = filteredStudents.length > 0
+    ? filteredStudents.reduce((acc, student) => acc + getStudentGradeSession(student.id), 0) / filteredStudents.length
+    : 0;
 
   return (
     <Layout
       role="enseignant"
-      user={{ name: 'Jean Dupont', role: 'Enseignant', notifications: 2 }}
+      user={{ name: `${enseignantData.profile.firstName} ${enseignantData.profile.name}`, role: 'Enseignant', notifications: 2 }}
     >
       <div className="space-y-8">
         <div className="flex items-center justify-between">
@@ -148,7 +151,7 @@ export default function GradeSessions() {
                 placeholder="Rechercher un étudiant..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white"
               />
             </div>
           </div>
@@ -166,7 +169,13 @@ export default function GradeSessions() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {filteredStudents.map((student) => (
+                {filteredStudents.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center text-slate-500">
+                      Aucun étudiant trouvé pour cette filière et ce niveau.
+                    </td>
+                  </tr>
+                ) : filteredStudents.map((student) => (
                   <tr key={student.id} className="hover:bg-slate-50/50 transition-colors group">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
@@ -188,7 +197,7 @@ export default function GradeSessions() {
                           placeholder="Note"
                           className={cn(
                             "w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 font-bold text-slate-800",
-                            getStudentGradeSession(student.id) < 10 ? "border-rose-200 focus:ring-rose-200 focus:border-rose-500" : "border-slate-200 focus:ring-primary/20 focus:border-primary"
+                            getStudentGradeSession(student.id) < 10 ? "border-rose-200 focus:ring-rose-200 focus:border-rose-500" : "border-slate-200 focus:ring-blue-500/20 focus:border-blue-500"
                           )}
                         />
                         {getStudentGradeSession(student.id) < 10 && <div className="absolute -right-2 -top-2 w-4 h-4 bg-rose-500 rounded-full flex items-center justify-center text-white"><AlertCircle className="w-3 h-3" /></div>}
@@ -211,7 +220,7 @@ export default function GradeSessions() {
                 <tr className="bg-slate-50/50 font-bold border-t border-slate-200">
                   <td className="px-6 py-4 text-sm text-slate-600">Moyenne de la classe</td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 text-primary">
+                    <div className="flex items-center gap-2 text-blue-600">
                       <Calculator className="w-4 h-4" />
                       <span className="text-lg font-black">{average.toFixed(2)}</span>
                     </div>
