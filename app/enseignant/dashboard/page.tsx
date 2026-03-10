@@ -4,24 +4,47 @@ import React, { useState } from 'react';
 import Sidebar from '@/components1/common/Sidebar';
 import Navbar from '@/components1/common/Navbar';
 import { Card } from '@/components1/common/Card';
-import { BookOpen, GraduationCap, Calendar, ChevronRight } from 'lucide-react';
+import { Button } from '@/components1/common/Button';
+import FormField from '@/components1/common/FormField';
+import { BookOpen, GraduationCap, Calendar, ChevronRight, User } from 'lucide-react';
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState({
+    firstName: enseignantData.profile.firstName,
+    name: enseignantData.profile.name,
+    email: enseignantData.profile.email,
+    phone: (enseignantData.profile as { phone?: string }).phone || '',
+    matiere: Array.isArray(enseignantData.profile.subjects)
+      ? enseignantData.profile.subjects.join(', ')
+      : '',
+  });
 
   const handleToggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const handleLogout = () => {
     console.log('Déconnexion');
   };
 
-  const { profile, courses, students } = enseignantData;
+  const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setProfile((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveProfile = () => {
+    console.log('Profil sauvegardé:', profile);
+    alert('Profil mis à jour !');
+  };
+
   const user = {
     name: `${profile.firstName} ${profile.name}`,
     role: 'Enseignant',
     notifications: 3,
   };
+
+  const { courses, students } = enseignantData;
+  const nextCourse = (enseignantData.profile as { nextCourse?: { subject: string; time: string; room: string } }).nextCourse;
 
   return (
     <div className="flex min-h-screen">
@@ -35,8 +58,32 @@ export default function DashboardPage() {
             <h1 className="text-2xl font-bold text-slate-800 mb-2">
               Bonjour, {profile.firstName} {profile.name}
             </h1>
-            <p className="text-slate-600 mb-8">Voici un aperçu de votre activité.</p>
+            <p className="text-slate-600 mb-6">Voici un aperçu de votre activité.</p>
 
+            {/* Section Profil éditable */}
+            <Card className="p-6 mb-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <User className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-semibold text-slate-800">Mon Profil</h2>
+                  <p className="text-sm text-slate-500">Modifiez vos informations personnelles</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+                <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
+                <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
+                <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
+                <FormField label="Téléphone" name="phone" value={profile.phone} onChange={handleProfileChange} />
+                <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
+              </div>
+              <Button onClick={handleSaveProfile} className="mt-4 bg-blue-600 text-white hover:bg-blue-700">
+                Sauvegarder le profil
+              </Button>
+            </Card>
+
+            <h2 className="text-lg font-semibold text-slate-800 mb-4">Accès rapide</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               <Link href="/enseignant/cours">
                 <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer h-full">

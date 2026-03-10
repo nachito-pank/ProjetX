@@ -3,6 +3,7 @@
     "name": "Dupont",
     "firstName": "Jean",
     "email": "jean.dupont@edu.com",
+    "phone": "+243 999 999 999",
     "subjects": ["Mathématiques", "Algorithmique"],
     "coursesCount": 5,
     "studentsCount": 120,
