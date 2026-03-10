@@ -14,14 +14,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "E-Learning Platform",
-  description: "Plateforme d'apprentissage en ligne",
+  title: "ECES",
+  description: "Plateforme ECES en ligne",
 };
 
 const getUser = () => {
   return {
     role: 'sous-admin' as const,  // 'admin' | 'sous-admin' | 'enseignant' | 'etudiant' | 'visitor'
-    name: 'Jean Dupont',
+    name: 'Marty Ngouono',
     avatar: ''  
   };
 };
