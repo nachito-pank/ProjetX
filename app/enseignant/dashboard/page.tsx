@@ -28,7 +28,6 @@ export default function DashboardPage() {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [profile, setProfile] = useState(getDefaultProfile);
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -36,14 +35,13 @@ export default function DashboardPage() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        setProfile({ ...getDefaultProfile(), ...parsed });
+        setProfile((prev) => ({ ...prev, ...parsed }));
       }
       const savedImage = localStorage.getItem(STORAGE_IMAGE_KEY);
       if (savedImage) setProfileImage(savedImage);
     } catch {
       // ignore parse errors
     }
-    setLoaded(true);
   }, []);
 
   const handleToggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -67,11 +65,6 @@ export default function DashboardPage() {
 
   const removeProfileImage = () => {
     setProfileImage(null);
-    try {
-      localStorage.removeItem(STORAGE_IMAGE_KEY);
-    } catch {
-      // ignore
-    }
   };
 
   const handleSaveProfile = () => {
