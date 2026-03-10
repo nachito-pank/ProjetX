@@ -9,9 +9,7 @@ import FormField from '@/components1/common/FormField';
 import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, BookOpenText, Pencil, Camera, X } from 'lucide-react';
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
-
-const STORAGE_KEY = 'enseignant-profile';
-const STORAGE_IMAGE_KEY = 'enseignant-profile-image';
+import { STORAGE_KEY, STORAGE_IMAGE_KEY } from '@/lib/enseignant-profile';
 
 const getDefaultProfile = () => ({
   firstName: enseignantData.profile.firstName,
