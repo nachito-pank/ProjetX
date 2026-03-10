@@ -6,13 +6,14 @@ import Navbar from '@/components1/common/Navbar';
 import { Card } from '@/components1/common/Card';
 import { Button } from '@/components1/common/Button';
 import FormField from '@/components1/common/FormField';
-import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, BookOpenText, Pencil } from 'lucide-react';
+import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, BookOpenText, Pencil, Camera, X } from 'lucide-react';
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const [profile, setProfile] = useState({
     firstName: enseignantData.profile.firstName,
     name: enseignantData.profile.name,
@@ -33,6 +34,19 @@ export default function DashboardPage() {
     setProfile((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setProfileImage(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeProfileImage = () => {
+    setProfileImage(null);
+  };
+
   const handleSaveProfile = () => {
     console.log('Profil sauvegardé:', profile);
     alert('Profil mis à jour !');
@@ -49,6 +63,7 @@ export default function DashboardPage() {
         ? enseignantData.profile.subjects.join(', ')
         : '',
     });
+    setProfileImage(null);
     setIsEditingProfile(false);
   };
 
@@ -75,83 +90,143 @@ export default function DashboardPage() {
             </h1>
             <p className="text-slate-600 mb-6">Voici un aperçu de votre activité.</p>
 
-            {/* Section Profil */}
-            <Card className="p-8 mb-8">
-              {!isEditingProfile ? (
-                <>
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25 shrink-0">
-                      <User className="w-12 h-12 text-white" />
-                    </div>
-                    <div className="flex-1 text-center sm:text-left">
-                      <h2 className="text-2xl font-bold text-slate-800 mb-1">
-                        {profile.firstName} {profile.name}
-                      </h2>
-                      <p className="text-slate-500 mb-6">Enseignant</p>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 text-slate-700">
-                          <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                            <Mail className="w-4 h-4 text-slate-500" />
-                          </div>
-                          <span>{profile.email}</span>
-                        </div>
-                        {profile.phone && (
-                          <div className="flex items-center gap-3 text-slate-700">
-                            <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                              <Phone className="w-4 h-4 text-slate-500" />
-                            </div>
-                            <span>{profile.phone}</span>
-                          </div>
-                        )}
-                        {profile.matiere && (
-                          <div className="flex items-center gap-3 text-slate-700">
-                            <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
-                              <BookOpenText className="w-4 h-4 text-slate-500" />
-                            </div>
-                            <span>{profile.matiere}</span>
+            {/* Section Profil - Carte style professionnel */}
+            <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50">
+              <div className="bg-gradient-to-r from-slate-50 to-white px-1 py-1">
+                <div className="flex flex-col lg:flex-row">
+                  {/* Photo / Avatar - Grande cercle type carte d'identité */}
+                  <div className="flex items-center justify-center p-8 lg:p-10 lg:border-r lg:border-slate-200/80 lg:pr-12">
+                    <div className="relative">
+                      <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl ring-2 ring-slate-100 bg-gradient-to-br from-slate-100 to-slate-200">
+                        {profileImage ? (
+                          <img
+                            src={profileImage}
+                            alt="Photo de profil"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600">
+                            <User className="w-16 h-16 sm:w-20 sm:h-20 text-white/90" />
                           </div>
                         )}
                       </div>
-                      <Button
-                        onClick={() => setIsEditingProfile(true)}
-                        variant="outline"
-                        className="mt-6 flex items-center gap-2"
-                      >
-                        <Pencil className="w-4 h-4" />
-                        Modifier le profil
-                      </Button>
                     </div>
                   </div>
-                </>
-              ) : (
-                <>
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Pencil className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <h2 className="text-lg font-semibold text-slate-800">Modifier mon profil</h2>
-                      <p className="text-sm text-slate-500">Mettez à jour vos informations</p>
-                    </div>
+
+                  {/* Contenu */}
+                  <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center">
+                    {!isEditingProfile ? (
+                      <>
+                        <div className="space-y-4">
+                          <div>
+                            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+                              {profile.firstName} {profile.name}
+                            </h2>
+                            <span className="inline-block mt-1 px-3 py-0.5 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full">
+                              Enseignant
+                            </span>
+                          </div>
+                          <div className="space-y-2.5 pt-2">
+                            <div className="flex items-center gap-3 text-slate-600">
+                              <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                                <Mail className="w-4 h-4 text-slate-500" />
+                              </div>
+                              <span className="text-sm font-medium">{profile.email}</span>
+                            </div>
+                            {profile.phone && (
+                              <div className="flex items-center gap-3 text-slate-600">
+                                <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                                  <Phone className="w-4 h-4 text-slate-500" />
+                                </div>
+                                <span className="text-sm font-medium">{profile.phone}</span>
+                              </div>
+                            )}
+                            {profile.matiere && (
+                              <div className="flex items-center gap-3 text-slate-600">
+                                <div className="w-9 h-9 bg-slate-100 rounded-lg flex items-center justify-center shrink-0">
+                                  <BookOpenText className="w-4 h-4 text-slate-500" />
+                                </div>
+                                <span className="text-sm font-medium">{profile.matiere}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <Button
+                          onClick={() => setIsEditingProfile(true)}
+                          variant="outline"
+                          className="mt-6 w-fit flex items-center gap-2 border-slate-200 hover:border-blue-300 hover:bg-blue-50/50"
+                        >
+                          <Pencil className="w-4 h-4" />
+                          Modifier le profil
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-lg font-semibold text-slate-800 mb-4">Modifier mon profil</h3>
+                        <div className="space-y-5">
+                          {/* Champ photo */}
+                          <div className="flex flex-col sm:flex-row items-start gap-4">
+                            <div className="flex items-center gap-4">
+                              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center shrink-0">
+                                {profileImage ? (
+                                  <div className="relative w-full h-full">
+                                    <img src={profileImage} alt="Aperçu" className="w-full h-full object-cover" />
+                                    <button
+                                      type="button"
+                                      onClick={(e) => { e.preventDefault(); removeProfileImage(); }}
+                                      className="absolute top-0 right-0 p-1 bg-rose-500 hover:bg-rose-600 text-white rounded-bl-lg transition-colors"
+                                      title="Supprimer la photo"
+                                    >
+                                      <X className="w-3.5 h-3.5" />
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <User className="w-10 h-10 text-slate-400" />
+                                )}
+                              </div>
+                              <div>
+                                <label className="cursor-pointer">
+                                  <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="hidden"
+                                  />
+                                  <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors border border-blue-100">
+                                    <Camera className="w-4 h-4" />
+                                    Changer la photo
+                                  </span>
+                                </label>
+                                <p className="text-xs text-slate-500 mt-2">JPG, PNG. Max 2 Mo</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
+                            <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
+                            <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
+                            <FormField label="Téléphone" name="phone" value={profile.phone} onChange={handleProfileChange} />
+                            <div className="sm:col-span-2">
+                              <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
+                            </div>
+                          </div>
+
+                          <div className="flex gap-2 pt-2">
+                            <Button onClick={handleSaveProfile} className="bg-blue-600 text-white hover:bg-blue-700">
+                              Sauvegarder
+                            </Button>
+                            <Button onClick={handleCancelEdit} variant="outline">
+                              Annuler
+                            </Button>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-                    <FormField label="Prénom" name="firstName" value={profile.firstName} onChange={handleProfileChange} />
-                    <FormField label="Nom" name="name" value={profile.name} onChange={handleProfileChange} />
-                    <FormField label="Email" name="email" type="email" value={profile.email} onChange={handleProfileChange} />
-                    <FormField label="Téléphone" name="phone" value={profile.phone} onChange={handleProfileChange} />
-                    <FormField label="Matières" name="matiere" value={profile.matiere} onChange={handleProfileChange} placeholder="Ex: Mathématiques, Algorithmique" />
-                  </div>
-                  <div className="flex gap-2 mt-6">
-                    <Button onClick={handleSaveProfile} className="bg-blue-600 text-white hover:bg-blue-700">
-                      Sauvegarder
-                    </Button>
-                    <Button onClick={handleCancelEdit} variant="outline">
-                      Annuler
-                    </Button>
-                  </div>
-                </>
-              )}
-            </Card>
+                </div>
+              </div>
+            </div>
 
             <h2 className="text-lg font-semibold text-slate-800 mb-4">Accès rapide</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
