@@ -1,0 +1,25 @@
+{
+    "enseignant": {
+      "id": 1,
+      "nom": "Jean Dupont",
+      "email": "j.dupont@ecole.com",
+      "photo": "/images/teacher1.jpg",
+      "matiere": ["Maths", "Physique"]
+    },
+    "cours": [
+      {"id": 1, "titre": "Algèbre", "filiere": "Science", "niveau": "L1"},
+      {"id": 2, "titre": "Mécanique", "filiere": "Science", "niveau": "L2"}
+    ],
+    "etudiants": [
+      {"id": 1, "nom": "Alice", "filiere": "Science", "niveau": "L1"},
+      {"id": 2, "nom": "Bob", "filiere": "Science", "niveau": "L2"}
+    ],
+    "notes": [
+      {"etudiantId": 1, "coursId": 1, "devoir": 14, "session": 15},
+      {"etudiantId": 2, "coursId": 2, "devoir": 12, "session": 13}
+    ],
+    "emploiDuTemps": [
+      {"jour": "Lundi", "cours": "Algèbre", "heure": "08:00-10:00", "salle": "A101"},
+      {"jour": "Mardi", "cours": "Mécanique", "heure": "10:00-12:00", "salle": "B202"}
+    ]
+  }

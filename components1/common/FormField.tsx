@@ -12,7 +12,7 @@ interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement | HT
   icon?: React.ReactNode;
 }
 
-export const FormField = ({
+export default function FormField({
   label,
   error,
   type = 'text',
@@ -22,9 +22,9 @@ export const FormField = ({
   className,
   id,
   ...props
-}: FormFieldProps) => {
+}: FormFieldProps) {
   const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
-  
+
   const baseClasses = cn(
     'w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all bg-white',
     icon && 'pl-10',
@@ -39,18 +39,26 @@ export const FormField = ({
           {label}
         </label>
       )}
-      
+
       <div className="relative">
         {icon && (
           <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
             {icon}
           </div>
         )}
-        
+
         {as === 'textarea' ? (
-          <textarea id={inputId} className={cn(baseClasses, 'min-h-[100px]')} {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)} />
+          <textarea
+            id={inputId}
+            className={cn(baseClasses, 'min-h-[100px]')}
+            {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          />
         ) : as === 'select' ? (
-          <select id={inputId} className={baseClasses} {...(props as React.SelectHTMLAttributes<HTMLSelectElement>)}>
+          <select
+            id={inputId}
+            className={baseClasses}
+            {...(props as React.SelectHTMLAttributes<HTMLSelectElement>)}
+          >
             {options?.map((opt) => (
               <option key={opt.value} value={opt.value}>
                 {opt.label}
@@ -58,11 +66,16 @@ export const FormField = ({
             ))}
           </select>
         ) : (
-          <input id={inputId} type={type} className={baseClasses} {...(props as React.InputHTMLAttributes<HTMLInputElement>)} />
+          <input
+            id={inputId}
+            type={type}
+            className={baseClasses}
+            {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
+          />
         )}
       </div>
-      
+
       {error && <p className="text-xs font-medium text-danger">{error}</p>}
     </div>
   );
-};
+}
