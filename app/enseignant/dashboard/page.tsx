@@ -6,12 +6,13 @@ import Navbar from '@/components1/common/Navbar';
 import { Card } from '@/components1/common/Card';
 import { Button } from '@/components1/common/Button';
 import FormField from '@/components1/common/FormField';
-import { BookOpen, GraduationCap, Calendar, ChevronRight, User } from 'lucide-react';
+import { BookOpen, GraduationCap, Calendar, ChevronRight, User, Mail, Phone, BookOpenText, Pencil } from 'lucide-react';
 import Link from 'next/link';
 import enseignantData from '@/data/enseignant.json';
 
 export default function DashboardPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [profile, setProfile] = useState({
     firstName: enseignantData.profile.firstName,
     name: enseignantData.profile.name,
@@ -35,6 +36,20 @@ export default function DashboardPage() {
   const handleSaveProfile = () => {
     console.log('Profil sauvegardé:', profile);
     alert('Profil mis à jour !');
+    setIsEditingProfile(false);
+  };
+
+  const handleCancelEdit = () => {
+    setProfile({
+      firstName: enseignantData.profile.firstName,
+      name: enseignantData.profile.name,
+      email: enseignantData.profile.email,
+      phone: (enseignantData.profile as { phone?: string }).phone || '',
+      matiere: Array.isArray(enseignantData.profile.subjects)
+        ? enseignantData.profile.subjects.join(', ')
+        : '',
+    });
+    setIsEditingProfile(false);
   };
 
   const user = {
