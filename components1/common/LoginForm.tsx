@@ -27,7 +27,7 @@ export const LoginForm = () => {
       } else if (email.includes('sous')) {
         window.location.href = '/sous-admin/dashboard';
       } else if (email.includes('enseignant')) {
-        window.location.href = '/enseignant/profil';
+        window.location.href = '/enseignant/dashboard';
       } else if (email.includes('etudiant')) {
         window.location.href = '/etudiant/dashboard';
       } else {
