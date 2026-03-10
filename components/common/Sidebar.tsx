@@ -52,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = ({ role, collapsed: initialCollapsed = f
   // Configuration des menus par rôle
   const getMenuItems = (): MenuItem[] => {
     const commonItems: MenuItem[] = [
-      { name: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" />, path: `/${role}/dashboard` },
+      { name: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" />, path: `/${role}/dashbard` },
     ];
 
     const roleSpecificItems: Record<UserRole, MenuItem[]> = {
