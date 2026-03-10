@@ -90,31 +90,26 @@ export default function DashboardPage() {
             </h1>
             <p className="text-slate-600 mb-6">Voici un aperçu de votre activité.</p>
 
-            {/* Section Profil - Carte style professionnel */}
-            <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg shadow-slate-200/50">
-              <div className="bg-gradient-to-r from-slate-50 to-white px-1 py-1">
-                <div className="flex flex-col lg:flex-row">
-                  {/* Photo / Avatar - Grande cercle type carte d'identité */}
-                  <div className="flex items-center justify-center p-8 lg:p-10 lg:border-r lg:border-slate-200/80 lg:pr-12">
-                    <div className="relative">
-                      <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-white shadow-xl ring-2 ring-slate-100 bg-gradient-to-br from-slate-100 to-slate-200">
-                        {profileImage ? (
-                          <img
-                            src={profileImage}
-                            alt="Photo de profil"
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-600">
-                            <User className="w-16 h-16 sm:w-20 sm:h-20 text-white/90" />
-                          </div>
-                        )}
-                      </div>
+            {/* Section Profil - Design professionnel */}
+            <div className="mb-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden">
+              <div className="h-24 bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600" />
+              <div className="relative px-6 pb-6 -mt-16">
+                <div className="flex flex-col sm:flex-row sm:items-end gap-6">
+                  {/* Photo - Style carte professionnelle */}
+                  <div className="relative shrink-0">
+                    <div className="w-32 h-32 rounded-2xl overflow-hidden border-4 border-white shadow-xl bg-slate-100">
+                      {profileImage ? (
+                        <img src={profileImage} alt="Photo" className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600">
+                          <User className="w-14 h-14 text-white/90" />
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   {/* Contenu */}
-                  <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center">
+                  <div className="flex-1 min-w-0 pt-2 sm:pt-0">
                     {!isEditingProfile ? (
                       <>
                         <div className="space-y-4">
